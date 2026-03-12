@@ -203,10 +203,21 @@ export default function CyclesClient({ user, initialProfile }: Props) {
                 <div style={{ fontSize: 14, fontWeight: 500 }}>Soul Assessment</div>
                 <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', fontFamily: 'var(--font-mono)', letterSpacing: 1 }}>Understanding your nafs</div>
               </div>
-              <div style={{ marginLeft: 'auto', display: 'flex', gap: 3 }}>
+              <div style={{ marginLeft: 'auto', display: 'flex', gap: 3, position: 'relative' }}>
                 {[0,1,2,3,4].map(i => <div key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: i < userCount ? '#B8860B' : 'rgba(255,255,255,0.1)', transition: 'background 0.4s', boxShadow: i < userCount ? '0 0 6px #B8860B88' : 'none' }} />)}
+                <button onClick={() => setShowMenu(!showMenu)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.3)', cursor: 'pointer', fontSize: 18, marginLeft: 8, display: 'flex', alignItems: 'center' }}>⋯</button>
+                
+                {showMenu && (
+                  <>
+                    <div onClick={() => setShowMenu(false)} style={{ position: 'fixed', inset: 0, zIndex: 10 }} />
+                    <div style={{ position: 'absolute', top: '100%', right: 0, marginTop: 8, background: '#121216', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: 6, zIndex: 11, minWidth: 120, boxShadow: '0 10px 25px rgba(0,0,0,0.5)', animation: 'fadeUp 0.2s both' }}>
+                      <button onClick={() => signOut({ callbackUrl: '/' })} style={{ width: '100%', textAlign: 'left', padding: '10px 12px', background: 'none', border: 'none', color: '#DDD5C4', fontSize: 13, cursor: 'pointer', borderRadius: 6, transition: 'background 0.2s', fontFamily: 'var(--font-serif)' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'} onMouseOut={e => e.currentTarget.style.background = 'none'}>
+                        Sign Out
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
-              <button onClick={() => setShowMenu(!showMenu)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.3)', cursor: 'pointer', fontSize: 18, marginLeft: 8 }}>⋯</button>
             </div>
           </div>
 
@@ -275,7 +286,19 @@ export default function CyclesClient({ user, initialProfile }: Props) {
             )}
             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
               {CYCLES.map((cy, i) => <CycleNode key={cy.id} cycle={cy} active={i === activeCycle} completed={completed.includes(i)} onClick={() => enterCycle(i)} />)}
-              <button onClick={() => signOut({ callbackUrl: '/' })} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: 'rgba(255,255,255,0.25)', cursor: 'pointer', fontSize: 11, padding: '4px 8px', fontFamily: 'var(--font-mono)' }}>Out</button>
+              <div style={{ position: 'relative' }}>
+                <button onClick={() => setShowMenu(!showMenu)} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: 'rgba(255,255,255,0.25)', cursor: 'pointer', fontSize: 13, padding: '4px 8px', display: 'flex', alignItems: 'center' }}>⋯</button>
+                {showMenu && (
+                  <>
+                    <div onClick={() => setShowMenu(false)} style={{ position: 'fixed', inset: 0, zIndex: 10 }} />
+                    <div style={{ position: 'absolute', top: '100%', right: 0, marginTop: 8, background: '#121216', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: 6, zIndex: 11, minWidth: 120, boxShadow: '0 10px 25px rgba(0,0,0,0.5)', animation: 'fadeUp 0.2s both' }}>
+                      <button onClick={() => signOut({ callbackUrl: '/' })} style={{ width: '100%', textAlign: 'left', padding: '10px 12px', background: 'none', border: 'none', color: '#DDD5C4', fontSize: 13, cursor: 'pointer', borderRadius: 6, transition: 'background 0.2s', fontFamily: 'var(--font-serif)' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'} onMouseOut={e => e.currentTarget.style.background = 'none'}>
+                        Sign Out
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
