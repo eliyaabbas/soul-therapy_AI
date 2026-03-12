@@ -1,0 +1,23 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "regions": ["iad1"],
+  "env": {
+    "NEXTAUTH_URL": "@nextauth_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "GOOGLE_CLIENT_ID": "@google_client_id",
+    "GOOGLE_CLIENT_SECRET": "@google_client_secret",
+    "FACEBOOK_CLIENT_ID": "@facebook_client_id",
+    "FACEBOOK_CLIENT_SECRET": "@facebook_client_secret",
+    "APPLE_ID": "@apple_id",
+    "APPLE_TEAM_ID": "@apple_team_id",
+    "APPLE_PRIVATE_KEY": "@apple_private_key",
+    "APPLE_KEY_ID": "@apple_key_id",
+    "TWILIO_ACCOUNT_SID": "@twilio_account_sid",
+    "TWILIO_AUTH_TOKEN": "@twilio_auth_token",
+    "TWILIO_PHONE_NUMBER": "@twilio_phone_number",
+    "ANTHROPIC_API_KEY": "@anthropic_api_key"
+  }
+}
