@@ -10,6 +10,7 @@ type SoulProfile = {
   dominantPower: string; vices: string[]; viceArabic: string[]
   virtue: string; virtueArabic: string
   aqlScore: number; ghadabScore: number; shahwahScore: number; summary: string
+  assessment_completed?: boolean
 }
 
 interface Props {
@@ -165,7 +166,7 @@ export default function CyclesClient({ user, initialProfile }: Props) {
     const data = await res.json()
     setMessages(prev => [...prev, { role: 'assistant', content: data.content, phase: 'cycle-close' }])
     setCompleted(prev => {
-      const next = [...new Set([...prev, activeCycle])]
+      const next = Array.from(new Set([...prev, activeCycle]))
       if (next.length >= 4) setTimeout(() => setPhase('summary'), 1800)
       return next
     })

@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
 import { redirect } from 'next/navigation'
 import { sql } from '@vercel/postgres'
 import CyclesClient from '@/components/soul/CyclesClient'
@@ -22,7 +22,7 @@ export default async function CyclesPage() {
   return (
     <CyclesClient
       user={{ id: session.user.id!, name: session.user.name, email: session.user.email, image: session.user.image }}
-      initialProfile={profile}
+      initialProfile={profile as any}
     />
   )
 }
